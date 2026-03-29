@@ -1,0 +1,14 @@
+/home/hacker/C##/kurci_C#.Net_WEB/Hometask/task1/bin/Debug/net10.0/task1
+/home/hacker/C##/kurci_C#.Net_WEB/Hometask/task1/bin/Debug/net10.0/task1.deps.json
+/home/hacker/C##/kurci_C#.Net_WEB/Hometask/task1/bin/Debug/net10.0/task1.runtimeconfig.json
+/home/hacker/C##/kurci_C#.Net_WEB/Hometask/task1/bin/Debug/net10.0/task1.dll
+/home/hacker/C##/kurci_C#.Net_WEB/Hometask/task1/bin/Debug/net10.0/task1.pdb
+/home/hacker/C##/kurci_C#.Net_WEB/Hometask/task1/obj/Debug/net10.0/task1.GeneratedMSBuildEditorConfig.editorconfig
+/home/hacker/C##/kurci_C#.Net_WEB/Hometask/task1/obj/Debug/net10.0/task1.AssemblyInfoInputs.cache
+/home/hacker/C##/kurci_C#.Net_WEB/Hometask/task1/obj/Debug/net10.0/task1.AssemblyInfo.cs
+/home/hacker/C##/kurci_C#.Net_WEB/Hometask/task1/obj/Debug/net10.0/task1.csproj.CoreCompileInputs.cache
+/home/hacker/C##/kurci_C#.Net_WEB/Hometask/task1/obj/Debug/net10.0/task1.dll
+/home/hacker/C##/kurci_C#.Net_WEB/Hometask/task1/obj/Debug/net10.0/refint/task1.dll
+/home/hacker/C##/kurci_C#.Net_WEB/Hometask/task1/obj/Debug/net10.0/task1.pdb
+/home/hacker/C##/kurci_C#.Net_WEB/Hometask/task1/obj/Debug/net10.0/task1.genruntimeconfig.cache
+/home/hacker/C##/kurci_C#.Net_WEB/Hometask/task1/obj/Debug/net10.0/ref/task1.dll
