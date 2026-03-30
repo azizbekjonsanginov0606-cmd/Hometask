@@ -15,241 +15,176 @@ List<Student> students = new List<Student>
             new Student { Id = 10, FirstName = "Носир", LastName = "Салимов", Age = 13, Gender = "Мард", Status = "Фаъол", StartDate = new DateTime(2019, 9, 1), GraduationDate = new DateTime(2029, 6, 30) },
             new Student { Id = 11, FirstName = "Мурод", LastName = "Махмудов", Age = 12, Gender = "Мард", Status = "Фаъол", StartDate = new DateTime(2018, 9, 1), GraduationDate = new DateTime(2028, 6, 30) }
         };
+while (true)
+{
+    Console.Clear();
+    Console.ForegroundColor = ConsoleColor.Cyan;
+    Console.WriteLine("╔══════════════════════════════════════════════════════════╗");
+    Console.WriteLine("║                МЕНЮИ ВАЗИФАҲОИ LINQ                      ║");
+    Console.WriteLine("╠══════════════════════════════════════════════════════════╣");
+    Console.ResetColor();
+
+    Console.ForegroundColor = ConsoleColor.Green;
+    Console.WriteLine("║  1. 👤 Танҳо мардҳо                                      ║ ");
+    Console.WriteLine("║  2. 🛑 Ғайрифаъолҳо                                      ║ ");
+    Console.WriteLine("║  3. 📅 Соли таваллуд > 2000                              ║ ");
+    Console.WriteLine("║  4. ✅ Синн > 20 ва Фаъол                                ║ ");
+    Console.WriteLine("║  5. 🎂 Синни 16                                          ║ ");
+    Console.WriteLine("║  6. 🎓 Калонсолон (18+)                                  ║ ");
+    Console.WriteLine("║  7. 🅰️  Ном бо 'А' ё 'I'                                  ║  ");
+    Console.WriteLine("║  8. 🔄 Ном ва Насаб бо як ҳарф                           ║ ");
+    Console.WriteLine("║  9. 🚀 Калонсол шудан ҳангоми таҳсил                     ║ ");
+    Console.WriteLine("║ 10. 🔍 Мард, Фаъол, < 16 ва собиқаи > 2                  ║ ");
+    Console.ResetColor();
+
+    Console.ForegroundColor = ConsoleColor.Red;
+    Console.WriteLine($"║ {"0. ❌ БАРОМАД",-55} ║");
+    Console.ForegroundColor = ConsoleColor.Green;
+    Console.WriteLine("╚══════════════════════════════════════════════════════════╝");
+    Console.ResetColor();
+    
+    Console.Write("Интихоб кунед: ");
+    string? choice = Console.ReadLine();
+
+    if (choice == "0") break;
+
+    Console.Clear();
+    switch (choice)
+    {
+        case "1": Task1(students); break;
+        case "2": Task2(students); break;
+        case "3": Task3(students); break;
+        case "4": Task4(students); break;
+        case "5": Task5(students); break;
+        case "6": Task6(students); break;
+        case "7": Task7(students); break;
+        case "8": Task8(students); break;
+        case "9": Task9(students); break;
+        case "10": Task10(students); break;
+        default: Console.WriteLine("Рақами нодуруст!"); break;
+    }
+
+    Console.WriteLine("\n\nБарои баргаштан Enter-ро пахш кунед...");
+    Console.ReadLine();
+}
+
+// --- ВАЗИФАҲО БО ҲАРДУ УСУЛ ---
+void Task1(List<Student> students)
+{
+    Console.WriteLine("\n[Task 1: Танҳо мардҳо]");
+    // Method Syntax
+    var res1 = students.Where(s => s.Gender == "Мард").ToList();
+    // Query Syntax
+    var res2 = (from s in students where s.Gender == "Мард" select s).ToList();
+
+    DisplayCompare(res1, res2);
+}
+
+void Task2(List<Student> students)
+{
+    Console.WriteLine("\n[Task 2: Ғайрифаъолҳо]");
+    var res1 = students.Where(s => s.Status == "Ғайрифаъол").ToList();
+    var res2 = (from s in students where s.Status == "Ғайрифаъол" select s).ToList();
+    DisplayCompare(res1, res2);
+}
+
+void Task3(List<Student> students)
+{
+    Console.WriteLine("\n[Task 3: Соли таваллуд > 2000]");
+    var res1 = students.Where(s => (DateTime.Now.Year - s.Age) > 2000).ToList();
+    var res2 = (from s in students where (DateTime.Now.Year - s.Age) > 2000 select s).ToList();
+    DisplayCompare(res1, res2);
+}
+
+void Task4(List<Student> students)
+{
+    Console.WriteLine("\n[Task 4: Синн > 20 ва Фаъол]");
+    var res1 = students.Where(s => s.Age > 20 && s.Status == "Фаъол").ToList();
+    var res2 = (from s in students where s.Age > 20 && s.Status == "Фаъол" select s).ToList();
+    DisplayCompare(res1, res2);
+}
+
+void Task5(List<Student> students)
+{
+    Console.WriteLine("\n[Task 5: Синни 16]");
+    var res1 = students.Where(s => s.Age == 16).ToList();
+    var res2 = (from s in students where s.Age == 16 select s).ToList();
+    DisplayCompare(res1, res2);
+}
+
+void Task6(List<Student> students)
+{
+    Console.WriteLine("\n[Task 6: Калонсолон (18+)]");
+    var res1 = students.Where(s => s.Age >= 18).ToList();
+    var res2 = (from s in students where s.Age >= 18 select s).ToList();
+    DisplayCompare(res1, res2);
+}
+
+void Task7(List<Student> students)
+{
+    Console.WriteLine("\n[Task 7: Ном бо 'А' ё 'I']");
+    var res1 = students.Where(s => s.FirstName.ToLower().StartsWith("а") || s.FirstName.ToLower().StartsWith("i")).ToList();
+    var res2 = (from s in students
+                where s.FirstName.ToLower().StartsWith("а") || s.FirstName.ToLower().StartsWith("i")
+                select s).ToList();
+    DisplayCompare(res1, res2);
+}
+
+void Task8(List<Student> students)
+{
+    Console.WriteLine("\n[Task 8: Ном ва Насаб бо як ҳарф]");
+    var res1 = students.Where(s => s.FirstName.ToLower()[0] == s.LastName.ToLower()[0]).ToList();
+    var res2 = (from s in students where s.FirstName.ToLower()[0] == s.LastName.ToLower()[0] select s).ToList();
+    DisplayCompare(res1, res2);
+}
+
+void Task9(List<Student> students)
+{
+    Console.WriteLine("\n[Task 9: Калонсол шудан ҳангоми таҳсил]");
+    var res1 = students.Where(s => s.Age < 18 && (s.Age + (s.GraduationDate.Year - s.StartDate.Year)) >= 18).ToList();
+    var res2 = (from s in students
+                where s.Age < 18 && (s.Age + (s.GraduationDate.Year - s.StartDate.Year)) >= 18
+                select s).ToList();
+    DisplayCompare(res1, res2);
+}
+
+void Task10(List<Student> students)
+{
+    Console.WriteLine("\n[Task 10: Мард, Фаъол, < 16 ва собиқаи таҳсил > 2]");
+    var res1 = students.Where(s => s.Age < 16 && s.Gender == "Мард" && s.Status == "Фаъол" && (DateTime.Now.Year - s.StartDate.Year) > 2).ToList();
+    var res2 = (from s in students
+                where s.Age < 16 && s.Gender == "Мард" && s.Status == "Фаъол" && (DateTime.Now.Year - s.StartDate.Year) > 2
+                select s).ToList();
+    DisplayCompare(res1, res2);
+}
+
+// --- Ёрирасонҳо ---
 void PrintHeader()
 {
-    Console.WriteLine(new string('_', 85));
-    Console.WriteLine($"{"ID",-5} | {"Ном",-12} | {"Насаб",-15} | {"Синн",-5} | {"Ҷинс",-8} | {"Статус",-10} | {"Санаи оғоз",-12}");
-    Console.WriteLine(new string('_', 85));
+    Console.ForegroundColor = ConsoleColor.Blue;
+    Console.WriteLine(new string('-', 95));
+    Console.WriteLine($"{"ID",-5} | {"Исм",-12} | {"Насаб",-15} | {"Синн",-5} | {"Ҷинс",-8} | {"Статус",-10} | {"Санаи оғоз",-12}");
+    Console.WriteLine(new string('-', 95));
+    Console.ResetColor();
+}
+void DisplayCompare(List<Student> mSyntax, List<Student> qSyntax)
+{
+    Console.WriteLine("--- Method Syntax ---");
+    PrintList(mSyntax);
+    Console.WriteLine("\n--- Query Syntax ---");
+    PrintList(qSyntax);
 }
 
-Console.WriteLine("\nTask1");
-//  Method Syntax
-Console.WriteLine("\n--- Method Syntax (Усули методӣ) ---");
-var male = students.Where(a => a.Gender == "Мард").ToList();
-
-PrintHeader();
-foreach (var item in male)
+void PrintList(List<Student> list)
 {
-    Console.WriteLine($"{item.Id,-5} | {item.FirstName,-12} | {item.LastName,-15} | {item.Age,-5} | {item.Gender,-8} | {item.Status,-10} | {item.StartDate,10:dd.MM.yyyy}");
-}
-
-//  Query Syntax
-Console.WriteLine("\n\n--- Query Expression (Усули дархостӣ) ---");
-var male2 = (from m in students
-             where m.Gender == "Мард"
-             select m).ToList();
-
-PrintHeader();
-
-foreach (var item in male2)
-{
-    Console.WriteLine($"{item.Id,-5} | {item.FirstName,-12} | {item.LastName,-15} | {item.Age,-5} | {item.Gender,-8} | {item.Status,-10} | {item.StartDate,10:dd.MM.yyyy}");
-}
-Console.WriteLine("\nTask2");
-//  Method Syntax
-Console.WriteLine("\n--- Method Syntax (Усули методӣ) ---");
-var status = students.Where(a => a.Status == "Ғайрифаъол").ToList();
-
-PrintHeader();
-foreach (var item in status)
-{
-    Console.WriteLine($"{item.Id,-5} | {item.FirstName,-12} | {item.LastName,-15} | {item.Age,-5} | {item.Gender,-8} | {item.Status,-10} | {item.StartDate,10:dd.MM.yyyy}");
-}
-//  Query Syntax
-Console.WriteLine("\n\n--- Query Expression (Усули дархостӣ) ---");
-var status2 = (from s in students
-               where s.Status == "Ғайрифаъол"
-               select s).ToList();
-
-PrintHeader();
-foreach (var item in status)
-{
-    Console.WriteLine($"{item.Id,-5} | {item.FirstName,-12} | {item.LastName,-15} | {item.Age,-5} | {item.Gender,-8} | {item.Status,-10} | {item.StartDate,10:dd.MM.yyyy}");
-}
-
-Console.WriteLine("\nTask3");
-//  Method Syntax
-Console.WriteLine("\n--- Method Syntax (Усули методӣ) ---");
-var a = students.Where(a => (DateTime.Now.Year - a.Age) > 2000).ToList();
-
-PrintHeader();
-foreach (var item in a)
-{
-    Console.WriteLine($"{item.Id,-5} | {item.FirstName,-12} | {item.LastName,-15} | {item.Age,-5} | {item.Gender,-8} | {item.Status,-10} | {item.StartDate,10:dd.MM.yyyy}");
-}
-//  Query Syntax
-Console.WriteLine("\n\n--- Query Expression (Усули дархостӣ) ---");
-var a2 = (from s in students
-          where (DateTime.Now.Year - s.Age) > 2000
-          select s).ToList();
-
-PrintHeader();
-foreach (var item in a2)
-{
-    Console.WriteLine($"{item.Id,-5} | {item.FirstName,-12} | {item.LastName,-15} | {item.Age,-5} | {item.Gender,-8} | {item.Status,-10} | {item.StartDate,10:dd.MM.yyyy}");
-}
-
-Console.WriteLine("\nTask4");
-//  Method Syntax
-Console.WriteLine("\n--- Method Syntax (Усули методӣ) ---");
-var agestatus = students.Where(s => s.Age > 20 && s.Status == "Фаъол").ToList();
-
-PrintHeader();
-foreach (var item in agestatus)
-{
-    Console.WriteLine($"{item.Id,-5} | {item.FirstName,-12} | {item.LastName,-15} | {item.Age,-5} | {item.Gender,-8} | {item.Status,-10} | {item.StartDate,10:dd.MM.yyyy}");
-}
-//  Query Syntax
-Console.WriteLine("\n\n--- Query Expression (Усули дархостӣ) ---");
-var agestatus2 = (from s in students
-                  where s.Age > 20 && s.Status == "Фаъол"
-                  select s).ToList();
-
-PrintHeader();
-foreach (var item in agestatus2)
-{
-    Console.WriteLine($"{item.Id,-5} | {item.FirstName,-12} | {item.LastName,-15} | {item.Age,-5} | {item.Gender,-8} | {item.Status,-10} | {item.StartDate,10:dd.MM.yyyy}");
-}
-
-Console.WriteLine("\nTask5");
-//  Method Syntax
-Console.WriteLine("\n--- Method Syntax (Усули методӣ) ---");
-var age = students.Where(s => s.Age == 16).ToList();
-
-PrintHeader();
-foreach (var item in age)
-{
-    Console.WriteLine($"{item.Id,-5} | {item.FirstName,-12} | {item.LastName,-15} | {item.Age,-5} | {item.Gender,-8} | {item.Status,-10} | {item.StartDate,10:dd.MM.yyyy}");
-}
-//  Query Syntax
-Console.WriteLine("\n\n--- Query Expression (Усули дархостӣ) ---");
-var age2 = (from s in students
-            where s.Age == 16
-            select s).ToList();
-
-PrintHeader();
-foreach (var item in age2)
-{
-    Console.WriteLine($"{item.Id,-5} | {item.FirstName,-12} | {item.LastName,-15} | {item.Age,-5} | {item.Gender,-8} | {item.Status,-10} | {item.StartDate,10:dd.MM.yyyy}");
-}
-
-Console.WriteLine("\nTask6");
-//  Method Syntax
-Console.WriteLine("\n--- Method Syntax (Усули методӣ) ---");
-var age18 = students.Where(s => s.Age >= 18).ToList();
-
-PrintHeader();
-foreach (var item in age18)
-{
-    Console.WriteLine($"{item.Id,-5} | {item.FirstName,-12} | {item.LastName,-15} | {item.Age,-5} | {item.Gender,-8} | {item.Status,-10} | {item.StartDate,10:dd.MM.yyyy}");
-}
-//  Query Syntax
-Console.WriteLine("\n\n--- Query Expression (Усули дархостӣ) ---");
-var age18_2 = (from s in students
-               where s.Age >= 18
-               select s).ToList();
-
-PrintHeader();
-foreach (var item in age18_2)
-{
-    Console.WriteLine($"{item.Id,-5} | {item.FirstName,-12} | {item.LastName,-15} | {item.Age,-5} | {item.Gender,-8} | {item.Status,-10} | {item.StartDate,10:dd.MM.yyyy}");
-}
-
-Console.WriteLine("\nTask7");
-//  Method Syntax
-Console.WriteLine("\n--- Method Syntax (Усули методӣ) ---");
-var firstName = students.Where(s => s.FirstName.ToLower().StartsWith("а") || s.FirstName.ToLower().StartsWith("i")).ToList();
-
-PrintHeader();
-foreach (var item in firstName)
-{
-    Console.WriteLine($"{item.Id,-5} | {item.FirstName,-12} | {item.LastName,-15} | {item.Age,-5} | {item.Gender,-8} | {item.Status,-10} | {item.StartDate,10:dd.MM.yyyy}");
-}
-//  Query Syntax
-Console.WriteLine("\n\n--- Query Expression (Усули дархостӣ) ---");
-var firstName2 = (from s in students
-                  where s.FirstName.ToLower().StartsWith("а") || s.FirstName.ToLower().StartsWith("i")
-                  select s).ToList();
-
-PrintHeader();
-foreach (var item in firstName2)
-{
-    Console.WriteLine($"{item.Id,-5} | {item.FirstName,-12} | {item.LastName,-15} | {item.Age,-5} | {item.Gender,-8} | {item.Status,-10} | {item.StartDate,10:dd.MM.yyyy}");
-}
-
-
-Console.WriteLine("\nTask8");
-//  Method Syntax
-Console.WriteLine("\n--- Method Syntax (Усули методӣ) ---");
-var firstName1 = students.Where(s => s.FirstName.ToLower()[0] == s.LastName.ToLower()[0]).ToList();
-
-PrintHeader();
-foreach (var item in firstName1)
-{
-    Console.WriteLine($"{item.Id,-5} | {item.FirstName,-12} | {item.LastName,-15} | {item.Age,-5} | {item.Gender,-8} | {item.Status,-10} | {item.StartDate,10:dd.MM.yyyy}");
-}
-//  Query Syntax
-Console.WriteLine("\n\n--- Query Expression (Усули дархостӣ) ---");
-var firstName22 = (from s in students
-                   where s.FirstName.ToLower()[0] == s.LastName.ToLower()[0]
-                   select s).ToList();
-
-PrintHeader();
-foreach (var item in firstName22)
-{
-    Console.WriteLine($"{item.Id,-5} | {item.FirstName,-12} | {item.LastName,-15} | {item.Age,-5} | {item.Gender,-8} | {item.Status,-10} | {item.StartDate,10:dd.MM.yyyy}");
-}
-
-Console.WriteLine("\nTask9");
-//  Method Syntax
-Console.WriteLine("\n--- Method Syntax (Усули методӣ) ---");
-var ag1 = students.Where(s =>
-            s.Age < 18 &&
-      (s.Age + (s.GraduationDate.Year - s.StartDate.Year)) >= 18).ToList();
-
-PrintHeader();
-foreach (var item in ag1)
-{
-    Console.WriteLine($"{item.Id,-5} | {item.FirstName,-12} | {item.LastName,-15} | {item.Age,-5} | {item.Gender,-8} | {item.Status,-10} | {item.StartDate,10:dd.MM.yyyy}");
-}
-//  Query Syntax
-Console.WriteLine("\n\n--- Query Expression (Усули дархостӣ) ---");
-var ag22 = (from s in students
-            where s.Age < 18 &&
-      (s.Age + (s.GraduationDate.Year - s.StartDate.Year)) >= 18
-            select s).ToList();
-
-PrintHeader();
-foreach (var item in ag22)
-{
-    Console.WriteLine($"{item.Id,-5} | {item.FirstName,-12} | {item.LastName,-15} | {item.Age,-5} | {item.Gender,-8} | {item.Status,-10} | {item.StartDate,10:dd.MM.yyyy}");
-}
-
-Console.WriteLine("\nTask10");
-//  Method Syntax
-Console.WriteLine("\n--- Method Syntax (Усули методӣ) ---");
-var end1 = students.Where(s =>
-            s.Age < 16 &&
-            s.Gender == "Мард" &&
-            s.Status == "Фаъол" &&
-      (DateTime.Now.Year - s.StartDate.Year) > 2).ToList();
-
-PrintHeader();
-foreach (var item in end1)
-{
-    Console.WriteLine($"{item.Id,-5} | {item.FirstName,-12} | {item.LastName,-15} | {item.Age,-5} | {item.Gender,-8} | {item.Status,-10} | {item.StartDate,10:dd.MM.yyyy}");
-}
-//  Query Syntax
-Console.WriteLine("\n\n--- Query Expression (Усули дархостӣ) ---");
-var end2 = (from s in students
-            where s.Age < 16 &&
-            s.Gender == "Мард" &&
-            s.Status == "Фаъол" &&
-      (DateTime.Now.Year - s.StartDate.Year) > 2
-            select s).ToList();
-
-PrintHeader();
-foreach (var item in end2)
-{
-    Console.WriteLine($"{item.Id,-5} | {item.FirstName,-12} | {item.LastName,-15} | {item.Age,-5} | {item.Gender,-8} | {item.Status,-10} | {item.StartDate,10:dd.MM.yyyy}");
+    Console.ForegroundColor = ConsoleColor.Red;
+    if (!list.Any()) { Console.WriteLine("Маълумот ёфт нашуд."); return; }
+    Console.ResetColor();
+    PrintHeader();
+    Console.ForegroundColor = ConsoleColor.Green;
+    foreach (var s in list)
+    {
+        Console.WriteLine($"{s.Id,-5} | {s.FirstName,-12} | {s.LastName,-15} | {s.Age,-5} | {s.Gender,-8} | {s.Status,-10} | {s.StartDate:dd.MM.yyyy,}");
+    }
+    Console.ResetColor();
 }

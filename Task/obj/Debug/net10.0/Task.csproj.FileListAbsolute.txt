@@ -12,3 +12,4 @@
 /home/hacker/C##/kurci_C#.Net_WEB/Hometask/Task/obj/Debug/net10.0/Task.pdb
 /home/hacker/C##/kurci_C#.Net_WEB/Hometask/Task/obj/Debug/net10.0/Task.genruntimeconfig.cache
 /home/hacker/C##/kurci_C#.Net_WEB/Hometask/Task/obj/Debug/net10.0/ref/Task.dll
+/home/hacker/C##/kurci_C#.Net_WEB/Hometask/Task/obj/Debug/net10.0/Task.sourcelink.json
